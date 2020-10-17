@@ -1,7 +1,11 @@
 import React, {useState} from 'react';
 import {AppLoading} from "expo";
+import * as Font from 'expo-font';
 import { Text, Image } from "react-native";
 import { Asset } from 'expo-asset';
+import { Ionicons } from '@expo/vector-icons';
+import { NavigationContainer } from '@react-navigation/native';
+import Stack from "./navigation/Stack";
 
 const cacheImages = (images) => images.map(image => {
     if (typeof image === 'string') {
@@ -9,24 +13,27 @@ const cacheImages = (images) => images.map(image => {
     } else {
         return Asset.fromModule(image).downloadAsync();
     }
-})
+});
+
+const cacheFonts = fonts => fonts.map(font => [Font.loadAsync(font), Font.loadAsync(font)]);
 
 export default function App() {
     const [isReady, setIsReady] = useState(false);
-    const loadAssets = async () => {
+    const loadAssets = () => {
         const images = cacheImages([
             "https://placeimg.com/1000/1000/any",
             require("./assets/splash.png")
-        ])
-        console.log(images)
+        ]);
+        const fonts = cacheFonts([Ionicons.font]);
+        return Promise.all([...images, ...fonts]);
     }
     const onFinish = () => setIsReady(true);
 
     return (
         isReady ? (
-            <Text>
-                Ready1111
-            </Text>
+            <NavigationContainer>
+                <Stack/>
+            </NavigationContainer>
         ) : (
             <AppLoading
                 startAsync={loadAssets}
