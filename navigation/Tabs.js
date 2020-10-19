@@ -7,7 +7,7 @@ import Search from "../screens/Search";
 import Favs from "../screens/Favs";
 import {Platform} from "react-native-web";
 
-const Tab = createBottomTabNavigator();
+const Tabs = createBottomTabNavigator();
 
 const getHeaderName = (route) => {
     return route?.state?.routeNames[route.state.index] || "Movies"
@@ -21,7 +21,7 @@ export default ({navigation, route}) => {
         })
     }, [route])
     return(
-        <Tab.Navigator
+        <Tabs.Navigator
             screenOptions={({route}) => ({
                 tabBarIcon: ({focused}) => {
                     let iconName = Platform.OS === 'ios' ? 'ios-' : 'md-'
@@ -31,7 +31,7 @@ export default ({navigation, route}) => {
                         iconName += 'tv'
                     } else if (route.name === 'Search') {
                         iconName += 'search'
-                    } else if (route.name === 'Favourites') {
+                    } else if (route.name === 'Discovery') {
                         iconName += 'heart'
                     }
                     return (
@@ -50,10 +50,10 @@ export default ({navigation, route}) => {
                 borderTopColor:"#000"
             }
         }}>
-            <Tab.Screen name="Movies" component={Movies} />
-            <Tab.Screen name="Tv" component={Tv} />
-            <Tab.Screen name="Search" component={Search} />
-            <Tab.Screen name="Favourites" component={Favs} />
-        </Tab.Navigator>
+            <Tabs.Screen name="Movies" component={Movies} />
+            <Tabs.Screen name="Tv" component={Tv} />
+            <Tabs.Screen name="Search" component={Search} />
+            <Tabs.Screen name="Discovery" component={Favs} />
+        </Tabs.Navigator>
     )
 }
