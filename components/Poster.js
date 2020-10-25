@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components/native';
 import PropTypes from 'prop-types';
+import {apiImage} from "../api";
 
 
 const Image = styled.Image`
@@ -12,7 +13,7 @@ const Image = styled.Image`
 const Poster = ({url}) => {
     return(
         <>
-            <Image source={{uri: url}} />
+            <Image resizeMove="cover" source={{uri: apiImage(url)}} />
         </>
     )
 }

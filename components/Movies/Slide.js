@@ -5,6 +5,7 @@ import { Image, TouchableOpacity } from "react-native";
 import {apiImage} from "../../api";
 import Poster from "../Poster";
 import Votes from "../Votes";
+import {trimText} from "../../utils";
 
 
 
@@ -67,13 +68,13 @@ const Slide = ({id, title, backgroundImage, votes, overview, poster}) => {
         <Container>
             <BG resizeMode="cover" source={{url: apiImage(backgroundImage)}} />
             <Content>
-                <Poster url={apiImage(poster)} />
+                <Poster url={poster} />
                 <Data>
-                    <Title>{title.length > 30 ? `${title.slice(0, 20)}...` : title}</Title>
+                    <Title>{trimText(title, 20)}</Title>
                     <VotesContainer>
                         <Votes votes={votes} />
                     </VotesContainer>
-                    <Overview>{overview.length > 80 ? `${overview.slice(0, 80)}...` : overview}</Overview>
+                    <Overview>{trimText(overview, 60)}</Overview>
                     <TouchableOpacity>
                         <Button>
                             <ButtonText>자세히 보기</ButtonText>
