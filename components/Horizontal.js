@@ -59,7 +59,7 @@ Horizontal.propTypes = {
         PropTypes.string,
         PropTypes.number,
     ]),
-    poster: PropTypes.string.isRequired,
+    poster: PropTypes.string,
     overview: PropTypes.string.isRequired,
     releaseDate: PropTypes.string,
 }
