@@ -5,7 +5,7 @@ import Movies from "../screens/Movies";
 import Tv from "../screens/Tv";
 import Search from "../screens/Search";
 import Favs from "../screens/Favs";
-import {Platform} from "react-native-web";
+import {Platform} from "react-native";
 
 const Tabs = createBottomTabNavigator();
 

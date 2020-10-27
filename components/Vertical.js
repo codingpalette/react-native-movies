@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components/native';
 import PropTypes from 'prop-types';
 import Poster from "./Poster";
-import {apiImage} from "../api";
 import Votes from "./Votes";
 import {trimText} from "../utils";
 
@@ -25,14 +24,14 @@ const Vertical = ({id, poster, title, votes}) => {
         <Container>
             <Poster url={poster} />
             <Title>{trimText(title, 10)}</Title>
-            <Votes votes={votes} />
+            {votes > 0 && <Votes votes={votes} />}
         </Container>
     )
 }
 
 Vertical.propTypes = {
     id: PropTypes.number.isRequired,
-    poster: PropTypes.string.isRequired,
+    poster: PropTypes.string,
     title: PropTypes.string.isRequired,
     votes: PropTypes.number.isRequired
 }

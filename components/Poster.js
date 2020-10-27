@@ -10,7 +10,7 @@ const Image = styled.Image`
     border-radius: 5px;
 `;
 
-const Poster = ({url}) => {
+const Poster = ({ url }) => {
     return(
         <>
             <Image resizeMove="cover" source={{uri: apiImage(url)}} />
@@ -19,7 +19,7 @@ const Poster = ({url}) => {
 }
 
 Poster.prototype = {
-    url: PropTypes.string.isRequired
+    url: PropTypes.string
 }
 
 export default Poster;
